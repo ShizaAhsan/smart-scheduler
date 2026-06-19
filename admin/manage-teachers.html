@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Teachers</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+</head>
+<body>
+<div class="dashboard-wrap">
+
+    <div class="sidebar">
+        <div class="sb-brand">🎓 Campus Scheduler</div>
+        <nav class="sb-nav">
+            <a href="dashboard.html" class="sb-item">🏠 Dashboard</a>
+            <a href="manage-courses.html" class="sb-item">📚 Manage Courses</a>
+            <a href="manage-rooms.html" class="sb-item">🏫 Manage Rooms</a>
+            <a href="manage-students.html" class="sb-item">👥 Manage Students</a>
+            <a href="manage-teachers.html" class="sb-item active">👨‍🏫 Manage Teachers</a>
+            <a href="generate-timetable.html" class="sb-item">⚡ Generate Timetable</a>
+            <a href="conflict-detection.html" class="sb-item">🔍 Conflict Detection</a>
+            <a href="announcements.html" class="sb-item">🔔 Announcements</a>
+            <a href="profile.html" class="sb-item">👤 Profile</a>
+        </nav>
+        <a href="../login.html" class="sb-item sb-logout">🚪 Logout</a>
+    </div>
+
+    <div class="main-content">
+        <div class="topbar">
+            <div class="topbar-title">Manage Teachers</div>
+            <div class="topbar-right">
+                <span class="bell">🔔</span>
+                <div class="avatar">AD</div>
+                <span class="username">Admin ▾</span>
+            </div>
+        </div>
+
+        <div class="page-content">
+
+            <div class="admin-header-action">
+                <h2 class="tt-title">All Teachers</h2>
+                <button class="admin-btn-add" onclick="openAddTeacher()">➕ Add New Teacher</button>
+            </div>
+
+            <!-- ADD TEACHER FORM -->
+            <div id="addTeacherForm" class="card" style="margin-bottom:1.2rem; display:none;">
+                <h3 class="card-title">Add New Teacher</h3>
+                <div class="gen-form">
+                    <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+                        <div class="gen-form-group">
+                            <label>Full Name</label>
+                            <input type="text" class="req-input" placeholder="Sir Farhan Ahmed">
+                        </div>
+                        <div class="gen-form-group">
+                            <label>Email</label>
+                            <input type="email" class="req-input" placeholder="teacher@university.edu.pk">
+                        </div>
+                    </div>
+                    <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+                        <div class="gen-form-group">
+                            <label>Department</label>
+                            <select class="tt-select" style="width:100%;">
+                                <option>Computer Science</option>
+                                <option>Software Engineering</option>
+                                <option>Information Technology</option>
+                            </select>
+                        </div>
+                        <div class="gen-form-group">
+                            <label>Designation</label>
+                            <select class="tt-select" style="width:100%;">
+                                <option>Lecturer</option>
+                                <option>Assistant Professor</option>
+                                <option>Associate Professor</option>
+                                <option>Professor</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="gen-form-group">
+                        <label>Assigned Courses</label>
+                        <select class="tt-select" style="width:100%;" multiple>
+                            <option>Data Structures — CS-201</option>
+                            <option>Database Systems — CS-202</option>
+                            <option>Web Engineering — CS-203</option>
+                        </select>
+                        <small style="color:#888; display:block; margin-top:4px;">Hold Ctrl to select multiple</small>
+                    </div>
+                    <div style="display:flex; gap:1rem;">
+                        <button class="gen-submit-btn" onclick="saveTeacher()">💾 Save Teacher</button>
+                        <button class="gen-submit-btn" style="background:#999;" onclick="closeAddTeacher()">Cancel</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TEACHERS TABLE -->
+            <div class="card" style="padding:0; overflow:auto;">
+                <table class="clo-table">
+                    <thead>
+                        <tr>
+                            <th style="text-align:left;">Teacher Name</th>
+                            <th>Email</th>
+                            <th>Department</th>
+                            <th>Designation</th>
+                            <th>Courses Assigned</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="text-align:left;" class="clo-name">Sir Farhan Ahmed</td>
+                            <td>farhan@university.edu.pk</td>
+                            <td>Computer Science</td>
+                            <td>Lecturer</td>
+                            <td>3 Courses</td>
+                            <td><span class="clo-pill green">Active</span></td>
+                            <td>
+                                <button class="admin-btn-small" onclick="editTeacher(1)">✏️ Edit</button>
+                                <button class="admin-btn-small-delete" onclick="deleteTeacher(1)">🗑️ Delete</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:left;" class="clo-name">Sir Ali Hassan</td>
+                            <td>ali@university.edu.pk</td>
+                            <td>Computer Science</td>
+                            <td>Assistant Professor</td>
+                            <td>2 Courses</td>
+                            <td><span class="clo-pill green">Active</span></td>
+                            <td>
+                                <button class="admin-btn-small" onclick="editTeacher(2)">✏️ Edit</button>
+                                <button class="admin-btn-small-delete" onclick="deleteTeacher(2)">🗑️ Delete</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:left;" class="clo-name">Sir Hamza Khan</td>
+                            <td>hamza@university.edu.pk</td>
+                            <td>Software Engineering</td>
+                            <td>Lecturer</td>
+                            <td>2 Courses</td>
+                            <td><span class="clo-pill green">Active</span></td>
+                            <td>
+                                <button class="admin-btn-small" onclick="editTeacher(3)">✏️ Edit</button>
+                                <button class="admin-btn-small-delete" onclick="deleteTeacher(3)">🗑️ Delete</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:left;" class="clo-name">Sir Ahmed Malik</td>
+                            <td>ahmed@university.edu.pk</td>
+                            <td>Computer Science</td>
+                            <td>Associate Professor</td>
+                            <td>1 Course</td>
+                            <td><span class="clo-pill green">Active</span></td>
+                            <td>
+                                <button class="admin-btn-small" onclick="editTeacher(4)">✏️ Edit</button>
+                                <button class="admin-btn-small-delete" onclick="deleteTeacher(4)">🗑️ Delete</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../js/admin.js"></script>
+</body>
+</html>

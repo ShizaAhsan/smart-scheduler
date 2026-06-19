@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Students</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+</head>
+<body>
+<div class="dashboard-wrap">
+
+    <div class="sidebar">
+        <div class="sb-brand">🎓 Campus Scheduler</div>
+        <nav class="sb-nav">
+            <a href="dashboard.html" class="sb-item">🏠 Dashboard</a>
+            <a href="manage-courses.html" class="sb-item">📚 Manage Courses</a>
+            <a href="manage-rooms.html" class="sb-item">🏫 Manage Rooms</a>
+            <a href="manage-students.html" class="sb-item active">👥 Manage Students</a>
+            <a href="manage-teachers.html" class="sb-item">👨‍🏫 Manage Teachers</a>
+            <a href="generate-timetable.html" class="sb-item">⚡ Generate Timetable</a>
+            <a href="conflict-detection.html" class="sb-item">🔍 Conflict Detection</a>
+            <a href="announcements.html" class="sb-item">🔔 Announcements</a>
+            <a href="profile.html" class="sb-item">👤 Profile</a>
+        </nav>
+        <a href="../login.html" class="sb-item sb-logout">🚪 Logout</a>
+    </div>
+
+    <div class="main-content">
+        <div class="topbar">
+            <div class="topbar-title">Manage Students</div>
+            <div class="topbar-right">
+                <span class="bell">🔔</span>
+                <div class="avatar">AD</div>
+                <span class="username">Admin ▾</span>
+            </div>
+        </div>
+
+        <div class="page-content">
+
+            <div class="admin-header-action">
+                <h2 class="tt-title">All Students</h2>
+                <button class="admin-btn-add" onclick="openAddStudent()">➕ Add New Student</button>
+            </div>
+
+            <!-- ADD STUDENT FORM -->
+            <div id="addStudentForm" class="card" style="margin-bottom:1.2rem; display:none;">
+                <h3 class="card-title">Add New Student</h3>
+                <div class="gen-form">
+                    <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+                        <div class="gen-form-group">
+                            <label>Roll Number</label>
+                            <input type="text" class="req-input" placeholder="21-CS-001">
+                        </div>
+                        <div class="gen-form-group">
+                            <label>Full Name</label>
+                            <input type="text" class="req-input" placeholder="Ali Raza">
+                        </div>
+                    </div>
+                    <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+                        <div class="gen-form-group">
+                            <label>Email</label>
+                            <input type="email" class="req-input" placeholder="student@university.edu.pk">
+                        </div>
+                        <div class="gen-form-group">
+                            <label>Semester</label>
+                            <select class="tt-select" style="width:100%;">
+                                <option>1st Semester</option>
+                                <option>2nd Semester</option>
+                                <option>3rd Semester</option>
+                                <option>4th Semester</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="gen-form-group">
+                        <label>Department</label>
+                        <select class="tt-select" style="width:100%;">
+                            <option>Computer Science</option>
+                            <option>Software Engineering</option>
+                            <option>Information Technology</option>
+                        </select>
+                    </div>
+                    <div style="display:flex; gap:1rem;">
+                        <button class="gen-submit-btn" onclick="saveStudent()">💾 Save Student</button>
+                        <button class="gen-submit-btn" style="background:#999;" onclick="closeAddStudent()">Cancel</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STUDENTS TABLE -->
+            <div class="card" style="padding:0; overflow:auto;">
+                <table class="clo-table">
+                    <thead>
+                        <tr>
+                            <th style="text-align:left;">Roll No</th>
+                            <th style="text-align:left;">Student Name</th>
+                            <th>Email</th>
+                            <th>Semester</th>
+                            <th>Department</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="text-align:left;">21-CS-01</td>
+                            <td style="text-align:left;" class="clo-name">Ali Raza</td>
+                            <td>ali@student.edu.pk</td>
+                            <td>3rd</td>
+                            <td>Computer Science</td>
+                            <td><span class="clo-pill green">Active</span></td>
+                            <td>
+                                <button class="admin-btn-small" onclick="editStudent(1)">✏️ Edit</button>
+                                <button class="admin-btn-small-delete" onclick="deleteStudent(1)">🗑️ Delete</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:left;">21-CS-02</td>
+                            <td style="text-align:left;" class="clo-name">Sara Ahmed</td>
+                            <td>sara@student.edu.pk</td>
+                            <td>3rd</td>
+                            <td>Computer Science</td>
+                            <td><span class="clo-pill green">Active</span></td>
+                            <td>
+                                <button class="admin-btn-small" onclick="editStudent(2)">✏️ Edit</button>
+                                <button class="admin-btn-small-delete" onclick="deleteStudent(2)">🗑️ Delete</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:left;">21-CS-03</td>
+                            <td style="text-align:left;" class="clo-name">Hamza Khan</td>
+                            <td>hamza@student.edu.pk</td>
+                            <td>3rd</td>
+                            <td>Computer Science</td>
+                            <td><span class="clo-pill green">Active</span></td>
+                            <td>
+                                <button class="admin-btn-small" onclick="editStudent(3)">✏️ Edit</button>
+                                <button class="admin-btn-small-delete" onclick="deleteStudent(3)">🗑️ Delete</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:left;">21-CS-04</td>
+                            <td style="text-align:left;" class="clo-name">Fatima Malik</td>
+                            <td>fatima@student.edu.pk</td>
+                            <td>4th</td>
+                            <td>Software Engineering</td>
+                            <td><span class="clo-pill green">Active</span></td>
+                            <td>
+                                <button class="admin-btn-small" onclick="editStudent(4)">✏️ Edit</button>
+                                <button class="admin-btn-small-delete" onclick="deleteStudent(4)">🗑️ Delete</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../js/admin.js"></script>
+</body>
+</html>

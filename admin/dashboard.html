@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+</head>
+<body>
+<div class="dashboard-wrap">
+
+    <div class="sidebar">
+        <div class="sb-brand">🎓 Campus Scheduler</div>
+        <nav class="sb-nav">
+            <a href="dashboard.html" class="sb-item active">🏠 Dashboard</a>
+            <a href="manage-courses.html" class="sb-item">📚 Manage Courses</a>
+            <a href="manage-rooms.html" class="sb-item">🏫 Manage Rooms</a>
+            <a href="manage-students.html" class="sb-item">👥 Manage Students</a>
+            <a href="manage-teachers.html" class="sb-item">👨‍🏫 Manage Teachers</a>
+            <a href="generate-timetable.html" class="sb-item">⚡ Generate Timetable</a>
+            <a href="conflict-detection.html" class="sb-item">🔍 Conflict Detection</a>
+            <a href="announcements.html" class="sb-item">🔔 Announcements</a>
+            <a href="profile.html" class="sb-item">👤 Profile</a>
+        </nav>
+        <a href="../login.html" class="sb-item sb-logout">🚪 Logout</a>
+    </div>
+
+    <div class="main-content">
+        <div class="topbar">
+            <div class="topbar-title">Dashboard</div>
+            <div class="topbar-right">
+                <span class="bell">🔔</span>
+                <div class="avatar">AD</div>
+                <span class="username">Admin ▾</span>
+            </div>
+        </div>
+
+        <div class="page-content">
+
+            <div class="welcome-section">
+                <h2>Welcome back, Admin! 👋</h2>
+                <p>System Overview</p>
+            </div>
+
+            <!-- STATS -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-num blue">450</div>
+                    <div class="stat-label">Total Students</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-num green">50</div>
+                    <div class="stat-label">Teachers</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-num orange">120</div>
+                    <div class="stat-label">Courses</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-num red">35</div>
+                    <div class="stat-label">Rooms</div>
+                </div>
+            </div>
+
+            <!-- TWO COLUMNS -->
+            <div class="two-col">
+
+                <!-- RECENT REQUESTS -->
+                <div class="card">
+                    <h3 class="card-title">📋 Pending Requests</h3>
+
+                    <div class="admin-req-item">
+                        <div class="admin-req-type" style="background:#e0f2fe; color:#0369a1;">Quiz Request</div>
+                        <div class="admin-req-info">
+                            <div class="admin-req-title">Data Structures Quiz</div>
+                            <div class="admin-req-sub">Sir Farhan — CS-201 — 22 May, 9:00 AM</div>
+                        </div>
+                        <div class="admin-req-actions">
+                            <button class="admin-btn-approve">✅ Approve</button>
+                            <button class="admin-btn-reject">❌ Reject</button>
+                        </div>
+                    </div>
+
+                    <div class="admin-req-item">
+                        <div class="admin-req-type" style="background:#fef3c7; color:#b45309;">Reschedule</div>
+                        <div class="admin-req-info">
+                            <div class="admin-req-title">Class Reschedule</div>
+                            <div class="admin-req-sub">Sir Ali — CS-202 — 25 May, 2:00 PM</div>
+                        </div>
+                        <div class="admin-req-actions">
+                            <button class="admin-btn-approve">✅ Approve</button>
+                            <button class="admin-btn-reject">❌ Reject</button>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- SYSTEM STATUS -->
+                <div class="card">
+                    <h3 class="card-title">⚙️ System Status</h3>
+
+                    <div class="admin-status-item">
+                        <div class="admin-status-label">Timetable Generated</div>
+                        <div class="admin-status-value">✅ Yes (Spring 2024)</div>
+                    </div>
+
+                    <div class="admin-status-item">
+                        <div class="admin-status-label">Conflicts Detected</div>
+                        <div class="admin-status-value">⚠️ 5 Issues Found</div>
+                    </div>
+
+                    <div class="admin-status-item">
+                        <div class="admin-status-label">Last Updated</div>
+                        <div class="admin-status-value">2024-05-20 3:45 PM</div>
+                    </div>
+
+                    <div class="admin-status-item">
+                        <div class="admin-status-label">Database Status</div>
+                        <div class="admin-status-value">✅ Connected</div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../js/admin.js"></script>
+</body>
+</html>
